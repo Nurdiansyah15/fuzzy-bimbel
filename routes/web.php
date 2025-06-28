@@ -42,5 +42,4 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     Route::resource('bimbels', BimbelController::class);
     Route::resource('rules', RuleController::class);
-    //   Route::resource('fuzzy_sets', FuzzySetController::class);
 });

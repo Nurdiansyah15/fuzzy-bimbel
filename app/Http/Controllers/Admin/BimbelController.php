@@ -11,7 +11,7 @@ class BimbelController extends Controller
     /**
      * Display a listing of the resource.
      */
-     public function index()
+    public function index()
     {
         $bimbels = Bimbel::latest()->get();
         return view('admin.bimbel.index', compact('bimbels'));
@@ -35,7 +35,7 @@ class BimbelController extends Controller
             'alamat' => 'required|string',
             'biaya' => 'required|integer|min:0',
             'jarak' => 'required|integer|min:0',
-            'fasilitas' => 'required|in:kurang,sedang,lengkap',
+            'fasilitas' => 'required|integer|min:0|max:10',
         ]);
 
         Bimbel::create($request->all());

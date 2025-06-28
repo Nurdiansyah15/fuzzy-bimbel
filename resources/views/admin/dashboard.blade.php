@@ -7,8 +7,6 @@
     <div class="mt-6 space-y-2">
         <a href="{{ route('bimbels.index') }}" class="block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Kelola
             Bimbel</a>
-        <a href="{{ route('fuzzy_sets.index') }}"
-            class="block bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Kelola Fuzzy Set</a>
         <a href="{{ route('rules.index') }}"
             class="block bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">Kelola Fuzzy Rule</a>
     </div>

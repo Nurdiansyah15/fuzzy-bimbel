@@ -27,11 +27,6 @@
                             class="block px-3 py-2 rounded {{ request()->routeIs('rules.*') ? 'bg-gray-200 font-semibold' : 'hover:bg-gray-100' }}">
                             Fuzzy Rules
                         </a>
-                        {{-- Tambahan jika ada --}}
-                        {{-- <a href="{{ route('fuzzy_sets.index') }}"
-                            class="block px-3 py-2 rounded {{ request()->routeIs('fuzzy_sets.*') ? 'bg-gray-200 font-semibold' : 'hover:bg-gray-100' }}">
-                            Fuzzy Sets
-                        </a> --}}
                     @else
                         <a href="{{ route('dashboard') }}"
                             class="block px-3 py-2 rounded {{ request()->routeIs('dashboard') ? 'bg-gray-200 font-semibold' : 'hover:bg-gray-100' }}">

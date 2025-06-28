@@ -9,14 +9,14 @@
                 @csrf
 
                 <div>
-                    <label class="block font-semibold mb-1">Harga Minimum (Rp)</label>
+                    <label class="block font-semibold mb-1">Harga Minimum (Ribu Rupiah)</label>
                     <input type="number" name="harga_min"
                         class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         required>
                 </div>
 
                 <div>
-                    <label class="block font-semibold mb-1">Harga Maksimum (Rp)</label>
+                    <label class="block font-semibold mb-1">Harga Maksimum (Ribu Rupiah)</label>
                     <input type="number" name="harga_max"
                         class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         required>
