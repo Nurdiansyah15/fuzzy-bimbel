@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\RuleController;
 use App\Http\Controllers\Admin\FuzzySetController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\TestimoniController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\PreferensiController;
 
 /*
@@ -48,4 +49,5 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::resource('bimbels', BimbelController::class);
     Route::resource('rules', RuleController::class);
     Route::get('testimoni', [TestimoniController::class, 'index'])->name('admin.testimoni.index');
+    Route::resource('users', UserController::class)->except('show');
 });

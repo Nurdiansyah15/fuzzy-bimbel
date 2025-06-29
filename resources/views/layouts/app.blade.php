@@ -35,6 +35,10 @@
                             class="block px-3 py-2 rounded {{ request()->routeIs('admin.testimoni.*') ? 'bg-gray-200 font-semibold' : 'hover:bg-gray-100' }}">
                             Testimoni
                         </a>
+                        <a href="{{ route('users.index') }}"
+                            class="block px-3 py-2 rounded {{ request()->routeIs('users.*') ? 'bg-gray-200 font-semibold' : 'hover:bg-gray-100' }}">
+                            Kelola User
+                        </a>
                     @else
                         <a href="{{ route('dashboard') }}"
                             class="block px-3 py-2 rounded {{ request()->routeIs('dashboard') ? 'bg-gray-200 font-semibold' : 'hover:bg-gray-100' }}">

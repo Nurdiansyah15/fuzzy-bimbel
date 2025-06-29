@@ -21,7 +21,7 @@
             <div class="overflow-x-auto">
                 <table class="w-full text-sm text-left border border-gray-200 rounded-lg overflow-hidden">
                     <thead class="bg-gray-100 text-gray-700 font-semibold">
-                        <tr>
+                        <tr class="text-center">
                             <th class="border px-4 py-3">Harga</th>
                             <th class="border px-4 py-3">Fasilitas</th>
                             <th class="border px-4 py-3">Jarak</th>
@@ -31,14 +31,14 @@
                     </thead>
                     <tbody class="text-gray-800">
                         @forelse ($rules as $rule)
-                            <tr class="hover:bg-gray-50 transition">
+                            <tr class="hover:bg-gray-50 transition text-center">
                                 <td class="border px-4 py-2 capitalize">{{ $rule->harga_label }}</td>
                                 <td class="border px-4 py-2 capitalize">{{ $rule->fasilitas_label }}</td>
                                 <td class="border px-4 py-2 capitalize">{{ $rule->jarak_label }}</td>
-                                <td class="border px-4 py-2 font-semibold text-indigo-600 capitalize">
+                                <td class="border px-4 py-2 font-bold capitalize">
                                     {{ $rule->output }}
                                 </td>
-                                <td class="border px-4 py-2">
+                                <td class="border-t px-4 py-2 flex justify-center">
                                     <div class="flex space-x-2">
                                         <a href="{{ route('rules.edit', $rule->id) }}"
                                             class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded text-xs font-medium">

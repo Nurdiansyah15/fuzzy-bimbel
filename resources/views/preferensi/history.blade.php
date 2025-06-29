@@ -11,7 +11,7 @@
                 <div class="overflow-x-auto">
                     <table class="w-full border text-sm text-left">
                         <thead class="bg-gray-100 font-semibold text-gray-700">
-                            <tr>
+                            <tr class="text-center">
                                 <th class="p-3 border">Harga Min</th>
                                 <th class="p-3 border">Harga Max</th>
                                 <th class="p-3 border">Jarak Max</th>
@@ -22,9 +22,9 @@
                         </thead>
                         <tbody class="text-gray-800">
                             @foreach ($histories as $item)
-                                <tr class="hover:bg-gray-50">
-                                    <td class="p-3 border">Rp{{ number_format($item->harga_min) }}</td>
-                                    <td class="p-3 border">Rp{{ number_format($item->harga_max) }}</td>
+                                <tr class="hover:bg-gray-50 text-center">
+                                    <td class="p-3 border">Rp{{ number_format($item->harga_min) }}.000,00</td>
+                                    <td class="p-3 border">Rp{{ number_format($item->harga_max) }}.000,00</td>
                                     <td class="p-3 border">{{ $item->jarak_max }} m</td>
                                     <td class="p-3 border capitalize">{{ $item->fasilitas }}</td>
                                     <td class="p-3 border">{{ $item->created_at->diffForHumans() }}</td>

@@ -33,10 +33,10 @@
 
                     <tbody class="text-gray-800">
                         @forelse ($bimbels as $b)
-                            <tr class="hover:bg-gray-50 transition">
-                                <td class="p-3 border">{{ $b->nama }}</td>
-                                <td class="p-3 border">{{ $b->alamat }}</td>
-                                <td class="p-3 border">{{ $b->biaya }} rb</td>
+                            <tr class="hover:bg-gray-50 transition text-center">
+                                <td class="p-3 border text-start">{{ $b->nama }}</td>
+                                <td class="p-3 border text-start">{{ $b->alamat }}</td>
+                                <td class="p-3 border">Rp. {{ $b->biaya }}.000,00</td>
                                 <td class="p-3 border">{{ $b->jarak }} m</td>
                                 <td class="p-3 border capitalize">
                                     @if ($b->fasilitas == 3)
@@ -49,7 +49,7 @@
                                         -
                                     @endif
                                 </td>
-                                <td class="p-3 border flex gap-2">
+                                <td class="p-3 border-t flex gap-2 justify-center">
                                     <a href="{{ route('bimbels.edit', $b->id) }}"
                                         class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded text-xs">
                                         Edit
