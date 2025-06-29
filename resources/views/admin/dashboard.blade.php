@@ -9,5 +9,10 @@
             Bimbel</a>
         <a href="{{ route('rules.index') }}"
             class="block bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">Kelola Fuzzy Rule</a>
+
+        <a href="{{ route('admin.testimoni.index') }}"
+            class="block bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600">
+            Semua Testimoni
+        </a>
     </div>
 @endsection

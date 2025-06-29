@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Bimbel;
+use App\Models\Testimoni;
+use Illuminate\Support\Facades\Auth;
 
 class BimbelController extends Controller
 {
@@ -82,5 +84,21 @@ class BimbelController extends Controller
         $bimbel->delete();
 
         return redirect()->route('bimbels.index')->with('success', 'Data bimbel berhasil dihapus.');
+    }
+
+
+    public function addTestimoni(Request $request, $id)
+    {
+        $request->validate([
+            'komentar' => 'required|string|max:1000',
+        ]);
+
+        Testimoni::create([
+            'user_id' => Auth::id(),
+            'bimbel_id' => $id,
+            'komentar' => $request->komentar,
+        ]);
+
+        return back()->with('success', 'Testimoni berhasil ditambahkan.');
     }
 }

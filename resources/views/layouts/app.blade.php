@@ -19,6 +19,10 @@
                 </div>
                 <nav class="p-4 space-y-2">
                     @if (auth()->user()->role === 'admin')
+                        <a href="{{ route('admin.dashboard') }}"
+                            class="block px-3 py-2 rounded {{ request()->routeIs('dashboard') ? 'bg-gray-200 font-semibold' : 'hover:bg-gray-100' }}">
+                            Dashboard
+                        </a>
                         <a href="{{ route('bimbels.index') }}"
                             class="block px-3 py-2 rounded {{ request()->routeIs('bimbels.*') ? 'bg-gray-200 font-semibold' : 'hover:bg-gray-100' }}">
                             Data Bimbel
@@ -26,6 +30,10 @@
                         <a href="{{ route('rules.index') }}"
                             class="block px-3 py-2 rounded {{ request()->routeIs('rules.*') ? 'bg-gray-200 font-semibold' : 'hover:bg-gray-100' }}">
                             Fuzzy Rules
+                        </a>
+                        <a href="{{ route('admin.testimoni.index') }}"
+                            class="block px-3 py-2 rounded {{ request()->routeIs('admin.testimoni.*') ? 'bg-gray-200 font-semibold' : 'hover:bg-gray-100' }}">
+                            Testimoni
                         </a>
                     @else
                         <a href="{{ route('dashboard') }}"
@@ -36,10 +44,17 @@
                             class="block px-3 py-2 rounded {{ request()->routeIs('preferensi.create') ? 'bg-gray-200 font-semibold' : 'hover:bg-gray-100' }}">
                             Isi Preferensi
                         </a>
-                        <a href="{{ route('preferensi.result') }}"
-                            class="block px-3 py-2 rounded {{ request()->routeIs('preferensi.result') ? 'bg-gray-200 font-semibold' : 'hover:bg-gray-100' }}">
-                            Hasil Rekomendasi
-                        </a>
+                        @if (session()->has('preferensi'))
+                            <a href="{{ route('preferensi.result') }}"
+                                class="block px-3 py-2 rounded {{ request()->routeIs('preferensi.result') ? 'bg-gray-200 font-semibold' : 'hover:bg-gray-100' }}">
+                                Hasil Rekomendasi
+                            </a>
+                        @else
+                            <span class="block px-3 py-2 rounded bg-gray-100 text-gray-400 cursor-not-allowed">
+                                Hasil Rekomendasi
+                            </span>
+                        @endif
+
                         <a href="{{ route('preferensi.history') }}"
                             class="block px-3 py-2 rounded {{ request()->routeIs('preferensi.history') ? 'bg-gray-200 font-semibold' : 'hover:bg-gray-100' }}">
                             History Pencarian

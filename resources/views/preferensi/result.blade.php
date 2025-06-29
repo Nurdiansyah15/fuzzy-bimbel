@@ -34,7 +34,7 @@
                                     </td>
 
                                     <td class="p-3 border">{{ $item['bimbel']->alamat }}</td>
-                                    <td class="p-3 border">Rp{{ number_format($item['bimbel']->biaya) }}</td>
+                                    <td class="p-3 border">Rp{{ number_format($item['bimbel']->biaya) }}.000,00</td>
                                     <td class="p-3 border">{{ $item['bimbel']->jarak }} m</td>
                                     <td class="p-3 border capitalize">
                                         @if ($item['bimbel']->fasilitas == 3)

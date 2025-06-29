@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\BimbelController;
 use App\Http\Controllers\Admin\RuleController;
 use App\Http\Controllers\Admin\FuzzySetController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\TestimoniController;
 use App\Http\Controllers\PreferensiController;
 
 /*
@@ -34,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/preferensi/history', [PreferensiController::class, 'history'])->name('preferensi.history');
     Route::get('/preferensi/result/{id}', [PreferensiController::class, 'resultFromHistory'])->name('preferensi.result.from.history');
     Route::get('/bimbels/{id}', [BimbelController::class, 'show'])->name('bimbels.show');
+    Route::post('/bimbels/{id}/testimoni', [BimbelController::class, 'addTestimoni']);
 });
 
 /*
@@ -45,4 +47,5 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     Route::resource('bimbels', BimbelController::class);
     Route::resource('rules', RuleController::class);
+    Route::get('testimoni', [TestimoniController::class, 'index'])->name('admin.testimoni.index');
 });

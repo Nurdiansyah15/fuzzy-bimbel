@@ -15,4 +15,9 @@ class Bimbel extends Model
         'jarak',
         'fasilitas',
     ];
+
+    public function testimonis()
+    {
+        return $this->hasMany(Testimoni::class);
+    }
 }
