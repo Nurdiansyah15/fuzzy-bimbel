@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Bimbel;
 use App\Models\FuzzyRule;
 use App\Helpers\FuzzyHelper;
+use App\Models\Preferensi;
+use Illuminate\Support\Facades\Auth;
 
 class PreferensiController extends Controller
 {
@@ -23,10 +25,57 @@ class PreferensiController extends Controller
             'fasilitas' => 'required|in:kurang,sedang,lengkap',
         ]);
 
+        $userId = Auth::id();
+
+        // Cek preferensi yang sama
+        $existing = Preferensi::where('user_id', $userId)
+            ->where('harga_min', $data['harga_min'])
+            ->where('harga_max', $data['harga_max'])
+            ->where('jarak_max', $data['jarak_max'])
+            ->where('fasilitas', $data['fasilitas'])
+            ->first();
+
+        if (!$existing) {
+            $existing = Preferensi::create([
+                'user_id' => $userId,
+                ...$data
+            ]);
+        }
+
+        // Simpan preferensi ke session untuk digunakan di result
         session(['preferensi' => $data]);
 
         return redirect()->route('preferensi.result');
     }
+
+    public function history()
+    {
+        $userId = Auth::id();
+        $histories = Preferensi::where('user_id', $userId)->latest()->get();
+
+        return view('preferensi.history', compact('histories'));
+    }
+
+    public function resultFromHistory($id)
+    {
+        $preferensi = Preferensi::where('id', $id)
+            ->where('user_id', Auth::id())
+            ->firstOrFail();
+
+        // Simpan ke session agar reuse logic result() tetap bisa digunakan
+        session([
+            'preferensi' => [
+                'harga_min' => $preferensi->harga_min,
+                'harga_max' => $preferensi->harga_max,
+                'jarak_max' => $preferensi->jarak_max,
+                'fasilitas' => $preferensi->fasilitas,
+            ]
+        ]);
+
+        return redirect()->route('preferensi.result');
+    }
+
+
 
     public function result()
     {

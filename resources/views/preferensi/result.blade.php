@@ -25,7 +25,14 @@
                         <tbody class="text-gray-800">
                             @foreach ($results as $item)
                                 <tr class="hover:bg-gray-50 transition">
-                                    <td class="p-3 border">{{ $item['bimbel']->nama }}</td>
+                                    <td class="p-3 border">
+                                        <a href="/bimbels/{{ $item['bimbel']->id }}?skor={{ $item['score'] }}"
+                                            class="text-blue-600 hover:underline font-medium">
+                                            {{ $item['bimbel']->nama }}
+                                        </a>
+
+                                    </td>
+
                                     <td class="p-3 border">{{ $item['bimbel']->alamat }}</td>
                                     <td class="p-3 border">Rp{{ number_format($item['bimbel']->biaya) }}</td>
                                     <td class="p-3 border">{{ $item['bimbel']->jarak }} m</td>
@@ -41,6 +48,8 @@
                                         @endif
                                     </td>
                                     <td class="p-3 border font-bold text-blue-600">{{ $item['score'] }}</td>
+
+
                                 </tr>
                             @endforeach
                         </tbody>

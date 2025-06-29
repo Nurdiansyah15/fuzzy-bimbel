@@ -45,32 +45,42 @@ class BimbelController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id, Request $request)
     {
-        //
+        $bimbel = Bimbel::findOrFail($id);
+        $skor = $request->query('skor'); // ambil dari query string
+
+        return view('preferensi.bimbel', compact('bimbel', 'skor'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(string $id)
     {
-        //
+        $bimbel = Bimbel::findOrFail($id);
+        return view('admin.bimbel.edit', compact('bimbel'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nama' => 'required|string',
+            'alamat' => 'required|string',
+            'biaya' => 'required|integer|min:0',
+            'jarak' => 'required|integer|min:0',
+            'fasilitas' => 'required|integer|min:0|max:10',
+        ]);
+
+        $bimbel = Bimbel::findOrFail($id);
+        $bimbel->update($request->all());
+
+        return redirect()->route('bimbels.index')->with('success', 'Data bimbel berhasil diperbarui.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        $bimbel = Bimbel::findOrFail($id);
+        $bimbel->delete();
+
+        return redirect()->route('bimbels.index')->with('success', 'Data bimbel berhasil dihapus.');
     }
 }

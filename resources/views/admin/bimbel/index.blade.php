@@ -11,6 +11,13 @@
                 </a>
             </div>
 
+            @if (session('success'))
+                <div class="bg-green-100 text-green-700 px-4 py-3 rounded border border-green-300 mb-4">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+
             <div class="overflow-x-auto">
                 <table class="w-full border border-gray-300 rounded-lg overflow-hidden text-sm text-left">
                     <thead class="bg-gray-100 text-gray-700 font-semibold">
@@ -20,8 +27,10 @@
                             <th class="p-3 border">Biaya</th>
                             <th class="p-3 border">Jarak</th>
                             <th class="p-3 border">Fasilitas</th>
+                            <th class="p-3 border">Aksi</th> {{-- Tambahkan --}}
                         </tr>
                     </thead>
+
                     <tbody class="text-gray-800">
                         @forelse ($bimbels as $b)
                             <tr class="hover:bg-gray-50 transition">
@@ -40,6 +49,23 @@
                                         -
                                     @endif
                                 </td>
+                                <td class="p-3 border flex gap-2">
+                                    <a href="{{ route('bimbels.edit', $b->id) }}"
+                                        class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded text-xs">
+                                        Edit
+                                    </a>
+
+                                    <form action="{{ route('bimbels.destroy', $b->id) }}" method="POST"
+                                        onsubmit="return confirm('Yakin ingin menghapus?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-xs">
+                                            Hapus
+                                        </button>
+                                    </form>
+                                </td>
+
                             </tr>
                         @empty
                             <tr>

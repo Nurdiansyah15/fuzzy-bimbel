@@ -11,6 +11,13 @@
                 </a>
             </div>
 
+            @if (session('success'))
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+
             <div class="overflow-x-auto">
                 <table class="w-full text-sm text-left border border-gray-200 rounded-lg overflow-hidden">
                     <thead class="bg-gray-100 text-gray-700 font-semibold">
@@ -19,6 +26,7 @@
                             <th class="border px-4 py-3">Fasilitas</th>
                             <th class="border px-4 py-3">Jarak</th>
                             <th class="border px-4 py-3">Output</th>
+                            <th class="border px-4 py-3">Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="text-gray-800">
@@ -30,14 +38,32 @@
                                 <td class="border px-4 py-2 font-semibold text-indigo-600 capitalize">
                                     {{ $rule->output }}
                                 </td>
+                                <td class="border px-4 py-2">
+                                    <div class="flex space-x-2">
+                                        <a href="{{ route('rules.edit', $rule->id) }}"
+                                            class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded text-xs font-medium">
+                                            Edit
+                                        </a>
+                                        <form action="{{ route('rules.destroy', $rule->id) }}" method="POST"
+                                            onsubmit="return confirm('Yakin ingin menghapus rule ini?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-xs font-medium">
+                                                Hapus
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="4" class="text-center text-gray-500 py-4">Belum ada rule yang ditambahkan.
+                                <td colspan="5" class="text-center text-gray-500 py-4">Belum ada rule yang ditambahkan.
                                 </td>
                             </tr>
                         @endforelse
                     </tbody>
+
                 </table>
             </div>
         </div>

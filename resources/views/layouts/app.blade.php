@@ -40,6 +40,10 @@
                             class="block px-3 py-2 rounded {{ request()->routeIs('preferensi.result') ? 'bg-gray-200 font-semibold' : 'hover:bg-gray-100' }}">
                             Hasil Rekomendasi
                         </a>
+                        <a href="{{ route('preferensi.history') }}"
+                            class="block px-3 py-2 rounded {{ request()->routeIs('preferensi.history') ? 'bg-gray-200 font-semibold' : 'hover:bg-gray-100' }}">
+                            History Pencarian
+                        </a>
                     @endif
                 </nav>
             </aside>

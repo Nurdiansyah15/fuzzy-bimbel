@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
@@ -20,13 +21,12 @@ class AuthController extends Controller
             'name' => 'required|string',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6|confirmed',
-            'role' => 'required|in:admin,user',
         ]);
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'role' => $request->role,
+            'role' => 'user',
             'password' => Hash::make($request->password),
         ]);
 
@@ -38,25 +38,25 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
- public function login(Request $request)
-{
-    $credentials = $request->only('email', 'password');
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
 
-    if (Auth::attempt($credentials)) {
-        $request->session()->regenerate();
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
 
-        // Redirect berdasarkan role
-        $role = Auth::user()->role;
+            // Redirect berdasarkan role
+            $role = Auth::user()->role;
 
-        if ($role === 'admin') {
-            return redirect('/admin');
+            if ($role === 'admin') {
+                return redirect('/admin');
+            }
+
+            return redirect('/');
         }
 
-        return redirect('/');
+        return back()->withErrors(['email' => 'Login gagal, periksa email dan password.']);
     }
-
-    return back()->withErrors(['email' => 'Login gagal, periksa email dan password.']);
-}
 
     public function logout(Request $request)
     {

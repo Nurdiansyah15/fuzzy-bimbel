@@ -31,6 +31,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/preferensi', [PreferensiController::class, 'create'])->name('preferensi.create');
     Route::post('/preferensi', [PreferensiController::class, 'store'])->name('preferensi.store');
     Route::get('/preferensi/result', [PreferensiController::class, 'result'])->name('preferensi.result');
+    Route::get('/preferensi/history', [PreferensiController::class, 'history'])->name('preferensi.history');
+    Route::get('/preferensi/result/{id}', [PreferensiController::class, 'resultFromHistory'])->name('preferensi.result.from.history');
+    Route::get('/bimbels/{id}', [BimbelController::class, 'show'])->name('bimbels.show');
 });
 
 /*
