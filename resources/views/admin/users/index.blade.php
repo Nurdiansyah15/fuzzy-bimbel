@@ -5,7 +5,8 @@
         <div class="bg-white p-8 rounded-xl shadow-md w-full">
             <div class="flex justify-between items-center mb-6">
                 <h1 class="text-2xl font-bold">Kelola Pengguna</h1>
-                <a href="{{ route('users.create') }}" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded">+
+                <a href="{{ route('admin.users.create') }}"
+                    class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded">+
                     Tambah User</a>
             </div>
 
@@ -31,9 +32,9 @@
                             <td class="p-3 border">{{ $user->email }}</td>
                             <td class="p-3 border capitalize">{{ $user->role }}</td>
                             <td class="p-3 border space-x-2">
-                                <a href="{{ route('users.edit', $user) }}"
+                                <a href="{{ route('admin.users.edit', $user) }}"
                                     class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded text-xs font-medium">Edit</a>
-                                <form action="{{ route('users.destroy', $user) }}" method="POST" class="inline"
+                                <form action="{{ route('admin.users.destroy', $user) }}" method="POST" class="inline"
                                     onsubmit="return confirm('Yakin hapus user ini?')">
                                     @csrf
                                     @method('DELETE')

@@ -49,5 +49,5 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::resource('bimbels', BimbelController::class);
     Route::resource('rules', RuleController::class);
     Route::get('testimoni', [TestimoniController::class, 'index'])->name('admin.testimoni.index');
-    Route::resource('users', UserController::class)->except('show');
+    Route::resource('users', UserController::class)->except('show')->names("admin.users");
 });

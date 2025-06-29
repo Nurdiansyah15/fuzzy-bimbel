@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="w-full mx-auto bg-white p-8 rounded-xl shadow">
-        <h1 class="text-xl font-bold mb-6">Edit User</h1>
+        <h1 class="text-xl font-bold mb-6">Tambah User</h1>
 
         {{-- Flash Error Global --}}
         @if ($errors->any())
@@ -16,13 +16,12 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('admin.users.update', $user) }}" class="space-y-4">
+        <form method="POST" action="{{ route('admin.users.store') }}" class="space-y-4">
             @csrf
-            @method('PUT')
 
             <div>
                 <label class="block font-medium">Nama</label>
-                <input name="name" value="{{ old('name', $user->name) }}" required
+                <input name="name" value="{{ old('name') }}" required
                     class="w-full border rounded px-4 py-2 @error('name') border-red-500 @enderror" />
                 @error('name')
                     <p class="text-sm text-red-500 mt-1">{{ $message }}</p>
@@ -31,7 +30,7 @@
 
             <div>
                 <label class="block font-medium">Email</label>
-                <input type="email" name="email" value="{{ old('email', $user->email) }}" required
+                <input type="email" name="email" value="{{ old('email') }}" required
                     class="w-full border rounded px-4 py-2 @error('email') border-red-500 @enderror" />
                 @error('email')
                     <p class="text-sm text-red-500 mt-1">{{ $message }}</p>
@@ -39,8 +38,8 @@
             </div>
 
             <div>
-                <label class="block font-medium">Password Baru (Opsional)</label>
-                <input type="password" name="password"
+                <label class="block font-medium">Password</label>
+                <input type="password" name="password" required
                     class="w-full border rounded px-4 py-2 @error('password') border-red-500 @enderror" />
                 @error('password')
                     <p class="text-sm text-red-500 mt-1">{{ $message }}</p>
@@ -49,15 +48,15 @@
 
             <div>
                 <label class="block font-medium">Konfirmasi Password</label>
-                <input type="password" name="password_confirmation" class="w-full border rounded px-4 py-2" />
+                <input type="password" name="password_confirmation" required class="w-full border rounded px-4 py-2" />
             </div>
 
             <div>
                 <label class="block font-medium">Role</label>
                 <select name="role" required
                     class="w-full border rounded px-4 py-2 @error('role') border-red-500 @enderror">
-                    <option value="user" {{ old('role', $user->role) === 'user' ? 'selected' : '' }}>User</option>
-                    <option value="admin" {{ old('role', $user->role) === 'admin' ? 'selected' : '' }}>Admin</option>
+                    <option value="user" {{ old('role') == 'user' ? 'selected' : '' }}>User</option>
+                    <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
                 </select>
                 @error('role')
                     <p class="text-sm text-red-500 mt-1">{{ $message }}</p>
@@ -65,7 +64,7 @@
             </div>
 
             <div class="pt-4">
-                <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Perbarui</button>
+                <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Simpan</button>
             </div>
         </form>
     </div>
